@@ -1,8 +1,8 @@
 const mongoose = require('../db/connection');
 
 module.exports = {
-  User: mongoose.model('User', require('./User')),
-  Listing: mongoose.model('Listing', require('./Listing')),
-  Skill: mongoose.model('Skill', require('./Skill')),
-  Booking: mongoose.model('Booking', require('./Booking')),
+  User: mongoose.model('User', require('./user')),
+  Listing: mongoose.model('Listing', require('./listing')),
+  Skill: mongoose.model('Skill', require('./skill')),
+  Booking: mongoose.model('Booking', require('./booking')),
 };

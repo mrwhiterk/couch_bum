@@ -4,7 +4,7 @@ const ListingSchema = new mongoose.Schema(
   {
     address: String,
     availability: Boolean,
-    imgUrls: [{ String }],
+    imgUrls: [String],
     notes: String,
   },
   { timestamps: true }

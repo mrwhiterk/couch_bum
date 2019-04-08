@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
-const { Listing } = require('./index');
-const { Skill } = require('./Skill.js');
+const ListingSchema = require('./listing');
+const SkillSchema = require('./skill');
 
 const UserSchema = new mongoose.Schema(
   {
@@ -16,10 +16,10 @@ const UserSchema = new mongoose.Schema(
       lowercase: true,
       unique: true,
     },
-    type: Number,
+    formType: Number,
     bio: String,
-    listings: [Listing],
-    skills: [Skill],
+    listings: [ListingSchema],
+    skills: [SkillSchema],
     image: String,
   },
   { timestamps: true }
