@@ -3,6 +3,6 @@ const router = express.Router();
 
 router.use('/listings', require('./listings'));
 router.use('/skills', require('./skills'));
-// router.use('/bookings', require('./bookings'));
+router.use('/bookings', require('./bookings'));
 
 module.exports = router;

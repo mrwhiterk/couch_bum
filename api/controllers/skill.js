@@ -2,7 +2,6 @@ const { Skill } = require('../models/index');
 
 module.exports = {
   index: (req, res) => {
-    console.log('hit');
     Skill.find({}).then(skills => {
       res.json(skills);
     });

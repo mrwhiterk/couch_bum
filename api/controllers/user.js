@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require('jwt-simple');
 const passport = require('../config/passport');
 const config = require('../config/config');
-const { User } = require('../models/index');
+const { User, Skill } = require('../models/index');
 
 router.post('/signup', (req, res) => {
   if (req.body.email && req.body.password) {
@@ -80,6 +80,18 @@ router.get('/guests', (req, res) => {
 router.get('/both', (req, res) => {
   User.find({ formType: 2 }).then(users => {
     res.json(users);
+  });
+});
+
+router.post('/:userId/addSkill', (req, res) => {
+  User.findOne({ _id: req.params.userId }).then(user => {
+    Skill.create(req.body).then(skill => {
+      user.skills.push(skill);
+
+      user.save((err, user) => {
+        res.json(user);
+      });
+    });
   });
 });
 
