@@ -107,6 +107,23 @@ router.post('/:userId/addListing', (req, res) => {
   });
 });
 
+router.put('/:userId/editListing/:listingId', (req, res) => {
+  User.findOne({ _id: req.params.userId }).then(user => {
+    const { imageUrls, address, availability, notes } = req.body;
+
+    let listing = user.listings.find(item => item.id === req.params.listingId);
+
+    listing.imageUrls = imageUrls;
+    listing.address = address;
+    listing.availability = availability;
+    listing.notes = notes;
+
+    user.save((err, booking) => {
+      res.json(booking);
+    });
+  });
+});
+
 router.delete('/:userId/removeSkill/:skillId', (req, res) => {
   User.findOne({ _id: req.params.userId }).then(user => {
     user.skills = user.skills.filter(item => item.id != req.params.skillId);

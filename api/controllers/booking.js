@@ -16,10 +16,12 @@ module.exports = {
   },
   update: (req, res) => {
     Booking.findOne({ _id: req.params.id }).then(booking => {
-      const { date, skillTime, address } = req.body;
+      const { date, skillTime, address, hostId, guestId } = req.body;
       booking.date = date;
       booking.skillTime = skillTime;
       booking.address = address;
+      booking.hostId = hostId;
+      booking.guestId = guestId;
 
       booking.save((err, booking) => {
         res.json(booking);
