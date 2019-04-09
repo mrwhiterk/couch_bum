@@ -65,4 +65,22 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/hosts', (req, res) => {
+  User.find({ formType: 0 }).then(users => {
+    res.json(users);
+  });
+});
+
+router.get('/guests', (req, res) => {
+  User.find({ formType: 1 }).then(users => {
+    res.json(users);
+  });
+});
+
+router.get('/both', (req, res) => {
+  User.find({ formType: 2 }).then(users => {
+    res.json(users);
+  });
+});
+
 module.exports = router;
