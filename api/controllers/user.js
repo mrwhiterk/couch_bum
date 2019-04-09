@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require('jwt-simple');
 const passport = require('../config/passport');
 const config = require('../config/config');
-const { User, Skill } = require('../models/index');
+const { User, Skill, Listing } = require('../models/index');
 
 router.post('/signup', (req, res) => {
   if (req.body.email && req.body.password) {
@@ -91,6 +91,40 @@ router.post('/:userId/addSkill', (req, res) => {
       user.save((err, user) => {
         res.json(user);
       });
+    });
+  });
+});
+
+router.post('/:userId/addListing', (req, res) => {
+  User.findOne({ _id: req.params.userId }).then(user => {
+    Listing.create(req.body).then(listing => {
+      user.listings.push(listing);
+
+      user.save((err, user) => {
+        res.json(user);
+      });
+    });
+  });
+});
+
+router.delete('/:userId/removeSkill/:skillId', (req, res) => {
+  User.findOne({ _id: req.params.userId }).then(user => {
+    user.skills = user.skills.filter(item => item.id != req.params.skillId);
+
+    user.save((err, user) => {
+      res.json(user);
+    });
+  });
+});
+
+router.delete('/:userId/removeListing/:listingId', (req, res) => {
+  User.findOne({ _id: req.params.userId }).then(user => {
+    user.listings = user.listings.filter(
+      item => item.id != req.params.listingId
+    );
+
+    user.save((err, user) => {
+      res.json(user);
     });
   });
 });
