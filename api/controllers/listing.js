@@ -16,7 +16,12 @@ module.exports = {
   },
   update: (req, res) => {
     Listing.findOne({ _id: req.params.id }).then(listing => {
-      listing = req.body;
+      const { address, availability, notes, imgUrls } = req.body;
+      listing.address = address;
+      listing.availability = availability;
+      listing.notes = notes;
+      listing.imgUrls = imgUrls;
+
       listing.save((err, listing) => {
         res.json(listing);
       });
