@@ -8,7 +8,7 @@ module.exports = {
   },
   show: (req, res) => {
     Listing.findOne({ _id: req.params.id }).then(listing => {
-      res.json(team);
+      res.json(listing);
     });
   },
   create: (req, res) => {
