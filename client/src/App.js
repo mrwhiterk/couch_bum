@@ -3,6 +3,7 @@ import './App.css';
 import Home from './Components/Home/Home';
 import { Route, Link, Switch } from 'react-router-dom';
 import Listings from './Components/Listings/Listings';
+import Listing from './Components/Listing/Listing';
 
 import {
   Collapse,
@@ -130,6 +131,13 @@ export default class App extends Component {
             exact
             render={props => (
               <Listings {...props} isLoggedIn={this.state.isLoggedIn} />
+            )}
+          />
+          <Route
+            path='/Listing/:id'
+            exact
+            render={props => (
+              <Listing {...props} isLoggedIn={this.state.isLoggedIn} />
             )}
           />
         </Switch>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import serverUrl from '../constants';
+import { Link } from 'react-router-dom';
 
 import {
   ListGroup,
@@ -44,7 +45,9 @@ export default class Listings extends Component {
         <ListGroup>
           {this.state.listings.map((listing, i) => (
             <ListGroupItem key={i}>
-              <ListGroupItemHeading>{listing.address}</ListGroupItemHeading>
+              <Link to={`/listing/${listing._id}`}>
+                <ListGroupItemHeading>{listing.address}</ListGroupItemHeading>
+              </Link>
               <ListGroupItemText>{listing.notes}</ListGroupItemText>
             </ListGroupItem>
           ))}

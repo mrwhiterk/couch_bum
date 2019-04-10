@@ -138,6 +138,22 @@ router.get('/listings', (req, res) => {
   });
 });
 
+router.get('/getListingOwner/:id', (req, res) => {
+  User.find({}).then(users => {
+    let listingOwner = {};
+
+    users.forEach(user => {
+      user.listings.forEach(listing => {
+        if (listing.id === req.params.id) {
+          listingOwner = user;
+        }
+      });
+    });
+
+    res.json(listingOwner);
+  });
+});
+
 router.delete('/:userId/removeSkill/:skillId', (req, res) => {
   User.findOne({ _id: req.params.userId }).then(user => {
     user.skills = user.skills.filter(item => item.id != req.params.skillId);
