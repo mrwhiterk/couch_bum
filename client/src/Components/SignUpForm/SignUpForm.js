@@ -29,6 +29,16 @@ class SignUpForm extends Component {
               onChange={this.props.handleInput}
             />
           </div>
+          <div className='form-group'>
+            <label htmlFor='password'>Username</label>
+            <input
+              className='form-control'
+              id=''
+              type='username'
+              name='username'
+              onChange={this.props.handleInput}
+            />
+          </div>
           <input
             class='btn btn-info m-3'
             value='Submit'

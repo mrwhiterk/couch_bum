@@ -22,6 +22,7 @@ router.post('/signup', (req, res) => {
             var token = jwt.encode(payload, config.jwtSecret);
             res.json({
               token: token,
+              id: user.id,
             });
           } else {
             res.sendStatus(401);
@@ -47,6 +48,7 @@ router.post('/login', (req, res) => {
           var token = jwt.encode(payload, config.jwtSecret);
           res.json({
             token: token,
+            id: user.id,
           });
         } else {
           res.sendStatus(401);
@@ -205,9 +207,16 @@ router.delete('/:userId/removeListing/:listingId', (req, res) => {
   });
 });
 
-// user show
+// user show by id
 router.get('/:id', (req, res) => {
   User.findOne({ _id: req.params.id }).then(user => {
+    res.json(user);
+  });
+});
+
+// user show by email
+router.get('/findByEmail/:email', (req, res) => {
+  User.findOne({ email: req.params.email }).then(user => {
     res.json(user);
   });
 });

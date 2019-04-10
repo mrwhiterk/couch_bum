@@ -35,6 +35,7 @@ class App extends Component {
       email: '',
       password: '',
       username: '',
+      userDetails: {},
       isLoggedIn: false,
     };
 
@@ -42,6 +43,7 @@ class App extends Component {
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
+    this.getUserData = this.getUserData.bind(this);
   }
 
   toggle() {
@@ -50,7 +52,19 @@ class App extends Component {
     });
   }
 
+  getUserData() {
+    console.log('hit');
+    axios
+      .get(serverUrl + '/users/findByEmail/' + this.state.email)
+      .then(res => {
+        console.log('res', res.data);
+        this.setState({ userDetails: res.data });
+      })
+      .catch(err => console.log(err));
+  }
+
   componentDidMount() {
+    console.log('local', localStorage);
     if (localStorage.token) {
       this.setState({
         isLoggedIn: true,
@@ -78,8 +92,10 @@ class App extends Component {
         username: this.state.username,
       })
       .then(response => {
+        localStorage.id = response.data.id;
         localStorage.token = response.data.token;
         this.setState({ isLoggedIn: true });
+
         this.props.history.push('/');
       })
       .catch(err => console.log(err));
@@ -96,7 +112,6 @@ class App extends Component {
   }
 
   handleLogIn(e) {
-    console.log('login');
     e.preventDefault();
     axios
       .post(serverUrl + '/users/login', {
@@ -104,6 +119,7 @@ class App extends Component {
         password: this.state.password,
       })
       .then(response => {
+        localStorage.id = response.data.id;
         localStorage.token = response.data.token;
         this.setState({ isLoggedIn: true });
         this.props.history.push('/');
@@ -113,6 +129,7 @@ class App extends Component {
 
   render() {
     console.log('state', this.state);
+
     return (
       <div>
         <Navbar color='light' light expand='md'>
@@ -148,23 +165,33 @@ class App extends Component {
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
-              <div className='nav-button'>
-                {this.state.isLoggedIn === false && (
+
+              {this.state.isLoggedIn === false && (
+                <NavItem>
+                  <Link to='/users/signup'>
+                    <NavLink>Signup</NavLink>
+                  </Link>
+                </NavItem>
+              )}
+              {this.state.isLoggedIn === false && (
+                <NavItem>
                   <Link to='/users/login'>
-                    <h3> Log In </h3>
+                    <NavLink>Login</NavLink>
                   </Link>
-                )}
-              </div>
-              <div className='nav-button'>
-                {this.state.isLoggedIn === true && (
+                </NavItem>
+              )}
+
+              {this.state.isLoggedIn === true && (
+                <NavItem>
                   <Link to='/users/login' onClick={this.handleLogOut}>
-                    <h3> Log Out </h3>
+                    <NavLink>Logout</NavLink>
                   </Link>
-                )}
-              </div>
+                </NavItem>
+              )}
             </Nav>
           </Collapse>
         </Navbar>
+
         <Switch>
           <Route
             path='/'
