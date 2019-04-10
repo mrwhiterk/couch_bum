@@ -45,7 +45,7 @@ export default class TravelerList extends Component {
         <ListGroup>
           {this.state.travelerList.map((traveler, i) => (
             <ListGroupItem key={i}>
-              <Link to={`/listing/${traveler._id}`}>
+              <Link to={`/Traveler/${traveler._id}`}>
                 <ListGroupItemHeading>{traveler.username}</ListGroupItemHeading>
               </Link>
               <ListGroupItemText>{traveler.bio}</ListGroupItemText>

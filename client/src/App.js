@@ -6,6 +6,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Listings from './Components/Listings/Listings';
 import Listing from './Components/Listing/Listing';
 import TravelerList from './Components/TravelerList/TravelerList';
+import Traveler from './Components/Traveler/Traveler';
 import axios from 'axios';
 import serverUrl from './Components/constants';
 
@@ -224,6 +225,13 @@ class App extends Component {
             exact
             render={props => (
               <Listing {...props} isLoggedIn={this.state.isLoggedIn} />
+            )}
+          />
+          <Route
+            path='/Traveler/:id'
+            exact
+            render={props => (
+              <Traveler {...props} isLoggedIn={this.state.isLoggedIn} />
             )}
           />
           <Route
