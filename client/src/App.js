@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import { Route, Link, Switch } from 'react-router-dom';
 import Listings from './Components/Listings/Listings';
 import Listing from './Components/Listing/Listing';
+import TravelerList from './Components/TravelerList/TravelerList';
 import axios from 'axios';
 import serverUrl from './Components/constants';
 
@@ -147,7 +148,9 @@ class App extends Component {
               )}
               {this.state.isLoggedIn === true && (
                 <NavItem>
-                  <NavLink href='#'>Travelers</NavLink>
+                  <Link to='/Travelers'>
+                    <NavLink>Travelers</NavLink>
+                  </Link>
                 </NavItem>
               )}
               {this.state.isLoggedIn === true && (
@@ -207,6 +210,13 @@ class App extends Component {
             exact
             render={props => (
               <Listings {...props} isLoggedIn={this.state.isLoggedIn} />
+            )}
+          />
+          <Route
+            path='/Travelers'
+            exact
+            render={props => (
+              <TravelerList {...props} isLoggedIn={this.state.isLoggedIn} />
             )}
           />
           <Route
