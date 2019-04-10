@@ -78,6 +78,12 @@ router.get('/getTravelers', (req, res) => {
   });
 });
 
+router.get('/getMySkills/:id', (req, res) => {
+  User.findOne({ _id: req.params.id }).then(user => {
+    res.json(user.skills);
+  });
+});
+
 // get all hosts
 router.get('/hosts', (req, res) => {
   User.find({ formType: 0 }).then(users => {

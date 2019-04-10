@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import serverUrl from '../constants';
 import { Link } from 'react-router-dom';
+import './HomeSkillList';
+import { Button } from 'reactstrap';
 
 import {
   ListGroup,
@@ -10,27 +12,27 @@ import {
   ListGroupItemText,
 } from 'reactstrap';
 
-export default class Listings extends Component {
+export default class HomeSkillList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      listings: null,
+      skillList: null,
       searchTerm: '',
     };
 
-    this.getListings = this.getListings.bind(this);
+    this.getSkills = this.getSkills.bind(this);
   }
 
   componentDidMount() {
-    this.getListings();
+    this.getSkills();
   }
 
-  getListings() {
+  getSkills() {
     axios
-      .get(serverUrl + '/users/listings')
+      .get(serverUrl + '/users/getMySkills/' + localStorage.id)
       .then(res => {
-        this.setState({ listings: res.data });
+        this.setState({ skillList: res.data });
       })
       .catch(err => {
         console.log(err);
@@ -38,22 +40,22 @@ export default class Listings extends Component {
   }
 
   render() {
-    if (!this.state.listings) {
+    if (!this.state.skillList) {
       return <div>Loading</div>;
+    } else if (this.state.skillList.length === 0) {
+      return <h3>No Skills Listed</h3>;
     } else {
       return (
         <div>
-          <h2>Listings</h2>
+          <h2>My Skills</h2>
           <ListGroup>
-            {this.state.listings.map((listing, i) => (
+            {this.state.skillList.map((skill, i) => (
               <ListGroupItem key={i}>
-                <Link to={`/listing/${listing._id}`}>
-                  <ListGroupItemHeading>{listing.address}</ListGroupItemHeading>
-                </Link>
-                <ListGroupItemText>{listing.notes}</ListGroupItemText>
+                <ListGroupItemHeading>{skill.name}</ListGroupItemHeading>
               </ListGroupItem>
             ))}
           </ListGroup>
+          <Button color='primary'>Add</Button>
         </div>
       );
     }

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import { Route, Link, Switch } from 'react-router-dom';
 import Listings from './Components/Listings/Listings';
 import Listing from './Components/Listing/Listing';
+import HomeSkillList from './Components/HomeSkillList/HomeSkillList';
 import TravelerList from './Components/TravelerList/TravelerList';
 import Traveler from './Components/Traveler/Traveler';
 import axios from 'axios';
@@ -142,6 +143,13 @@ class App extends Component {
             <Nav className='ml-auto' navbar>
               {this.state.isLoggedIn === true && (
                 <NavItem>
+                  <Link to='/'>
+                    <NavLink>Home</NavLink>
+                  </Link>
+                </NavItem>
+              )}
+              {this.state.isLoggedIn === true && (
+                <NavItem>
                   <Link to='/Listings'>
                     <NavLink>Listings</NavLink>
                   </Link>
@@ -157,13 +165,15 @@ class App extends Component {
               {this.state.isLoggedIn === true && (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
-                    Options
+                    My Info
                   </DropdownToggle>
                   <DropdownMenu right>
-                    <DropdownItem>Option 1</DropdownItem>
-                    <DropdownItem>Option 2</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Reset</DropdownItem>
+                    <Link to='/mySkills'>
+                      <DropdownItem>Skills</DropdownItem>
+                    </Link>
+                    <DropdownItem>Listings</DropdownItem>
+                    {/* <DropdownItem divider />
+                    <DropdownItem>Reset</DropdownItem> */}
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
@@ -254,6 +264,12 @@ class App extends Component {
                 handleInput={this.handleInput}
                 handleLogIn={this.handleLogIn}
               />
+            )}
+          />
+          <Route
+            path='/mySkills'
+            render={props => (
+              <HomeSkillList {...props} isLoggedIn={this.state.isLoggedIn} />
             )}
           />
         </Switch>
