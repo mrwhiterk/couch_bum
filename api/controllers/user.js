@@ -59,30 +59,35 @@ router.post('/login', (req, res) => {
   }
 });
 
+// get all users
 router.get('/', (req, res) => {
   User.find({}).then(users => {
     res.json(users);
   });
 });
 
+// get all hosts
 router.get('/hosts', (req, res) => {
   User.find({ formType: 0 }).then(users => {
     res.json(users);
   });
 });
 
+// get all guests
 router.get('/guests', (req, res) => {
   User.find({ formType: 1 }).then(users => {
     res.json(users);
   });
 });
 
+// get all users that are both guests and hosts
 router.get('/both', (req, res) => {
   User.find({ formType: 2 }).then(users => {
     res.json(users);
   });
 });
 
+// add skill to user
 router.post('/:userId/addSkill', (req, res) => {
   User.findOne({ _id: req.params.userId }).then(user => {
     Skill.create(req.body).then(skill => {
@@ -95,6 +100,7 @@ router.post('/:userId/addSkill', (req, res) => {
   });
 });
 
+// add listing to user
 router.post('/:userId/addListing', (req, res) => {
   User.findOne({ _id: req.params.userId }).then(user => {
     Listing.create(req.body).then(listing => {
@@ -107,6 +113,7 @@ router.post('/:userId/addListing', (req, res) => {
   });
 });
 
+// find user listing and edit by listing id
 router.put('/:userId/editListing/:listingId', (req, res) => {
   User.findOne({ _id: req.params.userId }).then(user => {
     const { imageUrls, address, availability, notes } = req.body;
@@ -124,6 +131,7 @@ router.put('/:userId/editListing/:listingId', (req, res) => {
   });
 });
 
+// get all listings
 router.get('/listings', (req, res) => {
   User.find({}).then(users => {
     const allListings = [];
@@ -138,6 +146,7 @@ router.get('/listings', (req, res) => {
   });
 });
 
+// get listing owner by listing id
 router.get('/getListingOwner/:id', (req, res) => {
   User.find({}).then(users => {
     let listingOwner = {};
@@ -154,6 +163,24 @@ router.get('/getListingOwner/:id', (req, res) => {
   });
 });
 
+// user listing show
+router.get('/getUserListing/:id', (req, res) => {
+  User.find({}).then(users => {
+    let showListing = {};
+
+    users.forEach(user => {
+      user.listings.forEach(listing => {
+        if (listing.id === req.params.id) {
+          showListing = listing;
+        }
+      });
+    });
+
+    res.json(showListing);
+  });
+});
+
+// remove skill from user
 router.delete('/:userId/removeSkill/:skillId', (req, res) => {
   User.findOne({ _id: req.params.userId }).then(user => {
     user.skills = user.skills.filter(item => item.id != req.params.skillId);
@@ -164,6 +191,7 @@ router.delete('/:userId/removeSkill/:skillId', (req, res) => {
   });
 });
 
+// remove listing from user
 router.delete('/:userId/removeListing/:listingId', (req, res) => {
   User.findOne({ _id: req.params.userId }).then(user => {
     user.listings = user.listings.filter(
@@ -176,6 +204,7 @@ router.delete('/:userId/removeListing/:listingId', (req, res) => {
   });
 });
 
+// user show
 router.get('/:id', (req, res) => {
   User.findOne({ _id: req.params.id }).then(user => {
     res.json(user);

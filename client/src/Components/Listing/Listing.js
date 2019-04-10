@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import serverUrl from '../constants';
+import { Row, Col, Alert } from 'reactstrap';
 
 import {
   Card,
@@ -33,27 +34,78 @@ export default class Listing extends Component {
       .catch(err => {
         console.log(err);
       });
+
+    axios
+      .get(serverUrl + '/users/getUserListing/' + id)
+      .then(res => {
+        this.setState({ listingDetails: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
-    console.log('props', this.props.match.params);
-    console.log('owner', this.state.listingOwner);
-    if (!this.state.listingOwner) {
+    if (!this.state.listingOwner || !this.state.listingDetails) {
       return <div>Loading</div>;
     } else {
+      const { username, email, formType, bio } = this.state.listingOwner;
+      const {
+        address,
+        availability,
+        notes,
+        imgUrls,
+      } = this.state.listingDetails;
+
       return (
         <div>
           <Card>
-            <CardHeader>Header</CardHeader>
+            <CardHeader>Listing Info</CardHeader>
             <CardBody>
-              <CardTitle>Special Title Treatment</CardTitle>
+              <CardTitle>
+                <h3>{address}</h3>
+              </CardTitle>
               <CardText>
-                With supporting text below as a natural lead-in to additional
-                content.
+                <div>
+                  {availability ? (
+                    <Alert color='success'>Available</Alert>
+                  ) : (
+                    <Alert color='danger'>Unavailable</Alert>
+                  )}
+                </div>
+                <div>
+                  <h4>Notes</h4> {notes}
+                </div>
+                <div>
+                  <h4>Images</h4>
+                  <Row>
+                    {imgUrls.map((imageUrl, i) => (
+                      <Col xs='auto' key={i}>
+                        <img src={imageUrl} alt={i} height='150px' />
+                      </Col>
+                    ))}
+                  </Row>
+                </div>
               </CardText>
-              <Button>Go somewhere</Button>
+              <Button>Apply</Button>
             </CardBody>
             {/* <CardFooter>Footer</CardFooter> */}
+          </Card>
+          <Card>
+            <CardHeader>Host Info</CardHeader>
+            <CardBody>
+              <CardTitle>
+                <h3>{username}</h3>
+              </CardTitle>
+              <CardText>
+                <div>
+                  <h4>Bio</h4> {bio}
+                </div>
+                <div>
+                  <h4>Email</h4> {email}
+                </div>
+              </CardText>
+            </CardBody>
           </Card>
         </div>
       );
