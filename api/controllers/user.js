@@ -124,6 +124,20 @@ router.put('/:userId/editListing/:listingId', (req, res) => {
   });
 });
 
+router.get('/listings', (req, res) => {
+  User.find({}).then(users => {
+    const allListings = [];
+
+    users.forEach(user => {
+      user.listings.forEach(listing => {
+        allListings.push(listing);
+      });
+    });
+
+    res.json(allListings);
+  });
+});
+
 router.delete('/:userId/removeSkill/:skillId', (req, res) => {
   User.findOne({ _id: req.params.userId }).then(user => {
     user.skills = user.skills.filter(item => item.id != req.params.skillId);
@@ -143,6 +157,12 @@ router.delete('/:userId/removeListing/:listingId', (req, res) => {
     user.save((err, user) => {
       res.json(user);
     });
+  });
+});
+
+router.get('/:id', (req, res) => {
+  User.findOne({ _id: req.params.id }).then(user => {
+    res.json(user);
   });
 });
 
