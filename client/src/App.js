@@ -35,7 +35,7 @@ class App extends Component {
       email: '',
       password: '',
       username: '',
-      userDetails: {},
+      userDetails: undefined,
       isLoggedIn: false,
     };
 
@@ -53,22 +53,20 @@ class App extends Component {
   }
 
   getUserData() {
-    console.log('hit');
     axios
-      .get(serverUrl + '/users/findByEmail/' + this.state.email)
+      .get(serverUrl + '/users/' + localStorage.id)
       .then(res => {
-        console.log('res', res.data);
         this.setState({ userDetails: res.data });
       })
       .catch(err => console.log(err));
   }
 
   componentDidMount() {
-    console.log('local', localStorage);
     if (localStorage.token) {
       this.setState({
         isLoggedIn: true,
       });
+      this.getUserData();
     } else {
       this.setState({
         isLoggedIn: false,
@@ -95,7 +93,7 @@ class App extends Component {
         localStorage.id = response.data.id;
         localStorage.token = response.data.token;
         this.setState({ isLoggedIn: true });
-
+        this.getUserData();
         this.props.history.push('/');
       })
       .catch(err => console.log(err));
@@ -107,6 +105,7 @@ class App extends Component {
       password: '',
       isLoggedIn: false,
     });
+    this.setState({ userData: undefined });
     localStorage.clear();
     this.props.history.push('/users/login');
   }
@@ -122,14 +121,13 @@ class App extends Component {
         localStorage.id = response.data.id;
         localStorage.token = response.data.token;
         this.setState({ isLoggedIn: true });
+        this.getUserData();
         this.props.history.push('/');
       })
       .catch(err => console.log(err));
   }
 
   render() {
-    console.log('state', this.state);
-
     return (
       <div>
         <Navbar color='light' light expand='md'>
@@ -180,7 +178,11 @@ class App extends Component {
                   </Link>
                 </NavItem>
               )}
-
+              {this.state.userDetails && this.state.isLoggedIn === true && (
+                <NavItem>
+                  <NavLink>Welcome, {this.state.userDetails.username}</NavLink>
+                </NavItem>
+              )}
               {this.state.isLoggedIn === true && (
                 <NavItem>
                   <Link to='/users/login' onClick={this.handleLogOut}>

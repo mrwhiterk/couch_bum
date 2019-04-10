@@ -18,18 +18,18 @@ class LogInForm extends Component {
               onChange={this.props.handleInput}
             />
           </div>
-          <div lassName='form-group'>
+          <div className='form-group'>
             <label htmlFor='password'>Password</label>
             <input
               className='form-control'
-              id='exampleFormControlInput1'
+              id=''
               type='password'
               name='password'
               onChange={this.props.handleInput}
             />
           </div>
           <input
-            class='btn btn-info m-3'
+            className='btn btn-info m-3'
             value='Submit'
             type='submit'
             onClick={this.props.handleLogIn}

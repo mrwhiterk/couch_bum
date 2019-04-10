@@ -7,7 +7,7 @@ import {
   Card,
   Button,
   CardHeader,
-  CardFooter,
+  // CardFooter,
   CardBody,
   CardTitle,
   CardText,
@@ -49,7 +49,7 @@ export default class Listing extends Component {
     if (!this.state.listingOwner || !this.state.listingDetails) {
       return <div>Loading</div>;
     } else {
-      const { username, email, formType, bio } = this.state.listingOwner;
+      const { username, email, bio } = this.state.listingOwner;
       const {
         address,
         availability,

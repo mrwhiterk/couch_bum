@@ -69,6 +69,15 @@ router.get('/', (req, res) => {
   });
 });
 
+// get all users with skills
+router.get('/getTravelers', (req, res) => {
+  User.find({}).then(users => {
+    const travelingUsers = users.filter(user => user.skills.length > 0);
+
+    res.json(travelingUsers);
+  });
+});
+
 // get all hosts
 router.get('/hosts', (req, res) => {
   User.find({ formType: 0 }).then(users => {
