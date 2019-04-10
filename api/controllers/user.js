@@ -10,6 +10,7 @@ router.post('/signup', (req, res) => {
     let newUser = {
       email: req.body.email,
       password: req.body.password,
+      username: req.body.username,
     };
     User.findOne({ email: req.body.email }).then(user => {
       if (!user) {

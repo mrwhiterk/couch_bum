@@ -8,19 +8,18 @@ const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      lowercase: true,
-      unique: true,
     },
+    password: String,
     email: {
       type: String,
       lowercase: true,
       unique: true,
     },
-    formType: Number,
-    bio: String,
+    formType: { type: Number, default: 0 },
+    bio: { type: String, default: "I'm down for something new" },
     listings: [ListingSchema],
     skills: [SkillSchema],
-    image: String,
+    image: { type: String, default: 'https://via.placeholder.com/150' },
   },
   { timestamps: true }
 );

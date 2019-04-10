@@ -5,6 +5,7 @@ User.remove({}).then(_ => {
     {
       username: 'cat123',
       email: 'cat@cat.com',
+      password: 'cat',
       formType: 1,
       bio: 'I am a cat',
       listings: [
@@ -28,6 +29,7 @@ User.remove({}).then(_ => {
     {
       username: 'dog345',
       email: 'dog@dog.com',
+      password: 'dog',
       formType: 0,
       bio: 'I am a dog',
       listings: [
@@ -46,6 +48,7 @@ User.remove({}).then(_ => {
     {
       username: 'frog678',
       email: 'frog@frog.com',
+      password: 'frog',
       formType: 1,
       bio: 'I am a frog',
       listings: [],
