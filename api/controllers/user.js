@@ -90,6 +90,19 @@ router.get('/getListings/:id', (req, res) => {
   });
 });
 
+router.get('/getUserInfo/:id', (req, res) => {
+  User.findOne({ _id: req.params.id }).then(user => {
+    const { email, username, bio, image } = user;
+    let userInfo = {
+      email,
+      username,
+      bio,
+      image,
+    };
+    res.json(userInfo);
+  });
+});
+
 // get all hosts
 router.get('/hosts', (req, res) => {
   User.find({ formType: 0 }).then(users => {

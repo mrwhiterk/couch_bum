@@ -8,6 +8,8 @@ import {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
+  Row,
+  Col,
 } from 'reactstrap';
 
 export default class TravelerList extends Component {
@@ -47,12 +49,30 @@ export default class TravelerList extends Component {
           <ListGroup>
             {this.state.travelerList.map((traveler, i) => (
               <ListGroupItem key={i}>
-                <Link to={`/Traveler/${traveler._id}`}>
-                  <ListGroupItemHeading>
-                    {traveler.username}
-                  </ListGroupItemHeading>
-                </Link>
-                <ListGroupItemText>{traveler.bio}</ListGroupItemText>
+                <Row>
+                  <Col>
+                    <Link to={`/Traveler/${traveler._id}`}>
+                      <ListGroupItemHeading>
+                        {traveler.username}
+                      </ListGroupItemHeading>
+                    </Link>
+                  </Col>
+                  <Col>
+                    <ListGroupItemText>{traveler.bio}</ListGroupItemText>
+                  </Col>
+                  <Col>
+                    <img src={traveler.image} alt='' height='75px' />
+                  </Col>
+                  <Col>
+                    <ListGroupItemText>
+                      {traveler.skills[0].name}{' '}
+                    </ListGroupItemText>
+                    <ListGroupItemText>
+                      {' '}
+                      {traveler.skills[1].name}{' '}
+                    </ListGroupItemText>
+                  </Col>
+                </Row>
               </ListGroupItem>
             ))}
           </ListGroup>

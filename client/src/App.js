@@ -9,6 +9,7 @@ import HomeSkillList from './Components/HomeSkillList/HomeSkillList';
 import HomeListings from './Components/HomeListings/HomeListings';
 import TravelerList from './Components/TravelerList/TravelerList';
 import Traveler from './Components/Traveler/Traveler';
+import UserInfo from './Components/UserInfo/UserInfo';
 import axios from 'axios';
 import serverUrl from './Components/constants';
 
@@ -175,8 +176,10 @@ class App extends Component {
                     <Link to='/myListings'>
                       <DropdownItem>Listings</DropdownItem>
                     </Link>
-                    {/* <DropdownItem divider />
-                    <DropdownItem>Reset</DropdownItem> */}
+                    <DropdownItem divider />
+                    <Link to='/myInfo'>
+                      <DropdownItem>Profile</DropdownItem>
+                    </Link>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
@@ -279,6 +282,12 @@ class App extends Component {
               path='/myListings'
               render={props => (
                 <HomeListings {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              path='/myInfo'
+              render={props => (
+                <UserInfo {...props} isLoggedIn={this.state.isLoggedIn} />
               )}
             />
           </Switch>
