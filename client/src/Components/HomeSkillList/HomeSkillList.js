@@ -10,6 +10,8 @@ import {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
+  Row,
+  Col,
 } from 'reactstrap';
 
 export default class HomeSkillList extends Component {
@@ -51,11 +53,23 @@ export default class HomeSkillList extends Component {
           <ListGroup>
             {this.state.skillList.map((skill, i) => (
               <ListGroupItem key={i}>
-                <ListGroupItemHeading>{skill.name}</ListGroupItemHeading>
+                <Row>
+                  <Col>
+                    <ListGroupItemHeading>{skill.name}</ListGroupItemHeading>
+                  </Col>
+                  <Col />
+                  <Col />
+                  <Col>
+                    <Link to={`/removeSkillFromUser/${skill._id}`}>Remove</Link>
+                  </Col>
+                </Row>
               </ListGroupItem>
             ))}
           </ListGroup>
-          <Button color='primary'>Add</Button>
+          <br />
+          <Link to='/addListingToUser'>
+            <Button color='primary'>Add</Button>
+          </Link>
         </div>
       );
     }

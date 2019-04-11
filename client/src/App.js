@@ -297,11 +297,34 @@ class App extends Component {
                 <ProfileForm {...props} isLoggedIn={this.state.isLoggedIn} />
               )}
             />
+            <Route
+              path='/removeSkillFromUser/:id'
+              render={props => <RemoveSkillFromUser {...props} />}
+            />
           </Switch>
         </main>
       </div>
     );
   }
 }
+
+const RemoveSkillFromUser = props => {
+  console.log('hit');
+  axios
+    .put(
+      serverUrl +
+        '/users/removeSkillFromUser/' +
+        localStorage.id +
+        '/skill/' +
+        props.match.params.id
+    )
+    .then(res => {
+      props.history.push(`/mySkills`);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  return <div />;
+};
 
 export default withRouter(App);

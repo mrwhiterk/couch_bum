@@ -40,6 +40,7 @@ export default class ProfileForm extends Component {
       .then(function(response) {})
       .finally(() => {
         this.props.history.push(`/myInfo`);
+        window.location.reload();
       });
   }
 
