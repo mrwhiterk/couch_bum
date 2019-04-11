@@ -65,11 +65,11 @@ export default class TravelerList extends Component {
                   </Col>
                   <Col>
                     <ListGroupItemText>
-                      {traveler.skills[0].name}{' '}
+                      {traveler.skills[0] && traveler.skills[0].name}{' '}
                     </ListGroupItemText>
                     <ListGroupItemText>
                       {' '}
-                      {traveler.skills[1].name}{' '}
+                      {traveler.skills[1] && traveler.skills[1].name}{' '}
                     </ListGroupItemText>
                   </Col>
                 </Row>
