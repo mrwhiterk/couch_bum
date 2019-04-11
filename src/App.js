@@ -8,6 +8,7 @@ import Listing from './Components/Listing/Listing';
 import HomeSkillList from './Components/HomeSkillList/HomeSkillList';
 import HomeListings from './Components/HomeListings/HomeListings';
 import TravelerList from './Components/TravelerList/TravelerList';
+import SkillForm from './Components/SkillForm/SkillForm';
 import Traveler from './Components/Traveler/Traveler';
 import UserInfo from './Components/UserInfo/UserInfo';
 import ProfileForm from './Components/ProfileForm/ProfileForm';
@@ -301,6 +302,10 @@ class App extends Component {
               path='/removeSkillFromUser/:id'
               render={props => <RemoveSkillFromUser {...props} />}
             />
+            <Route
+              path='/addSkillToUser'
+              render={props => <SkillForm {...props} />}
+            />
           </Switch>
         </main>
       </div>
@@ -309,7 +314,6 @@ class App extends Component {
 }
 
 const RemoveSkillFromUser = props => {
-  console.log('hit');
   axios
     .put(
       serverUrl +

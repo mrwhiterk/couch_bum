@@ -67,7 +67,7 @@ export default class HomeSkillList extends Component {
             ))}
           </ListGroup>
           <br />
-          <Link to='/addListingToUser'>
+          <Link to='/addSkillToUser'>
             <Button color='primary'>Add</Button>
           </Link>
         </div>
