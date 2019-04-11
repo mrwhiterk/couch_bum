@@ -73,37 +73,43 @@ export default class Listing extends Component {
                     <Alert color='danger'>Unavailable</Alert>
                   )}
                 </div>
-                <div>
-                  <h4>Notes</h4> {notes}
-                </div>
-                <div>
-                  <h4>Images</h4>
-                  <Row>
-                    {imgUrls.map((imageUrl, i) => (
-                      <Col xs='auto' key={i}>
-                        <img src={imageUrl} alt={i} height='150px' />
-                      </Col>
-                    ))}
-                  </Row>
-                </div>
+                <Row>
+                  <Col>
+                    <h4>Notes</h4> {notes}
+                  </Col>
+                  <Col>
+                    <h4>Images</h4>
+                    <Row>
+                      {imgUrls.map((imageUrl, i) => (
+                        <Col xs='auto' key={i}>
+                          <img src={imageUrl} alt={i} height='150px' />
+                        </Col>
+                      ))}
+                    </Row>
+                  </Col>
+                </Row>
+                <div />
+                <div />
               </CardText>
-              <Button>Apply</Button>
+              {/* <Button>Apply</Button> */}
             </CardBody>
             {/* <CardFooter>Footer</CardFooter> */}
           </Card>
           <Card>
             <CardHeader>Host Info</CardHeader>
             <CardBody>
-              <CardTitle>
-                <h3>{username}</h3>
-              </CardTitle>
               <CardText>
-                <div>
-                  <h4>Bio</h4> {bio}
-                </div>
-                <div>
-                  <h4>Email</h4> {email}
-                </div>
+                <Row>
+                  <Col>
+                    <h4>Username</h4> {username}
+                  </Col>
+                  <Col>
+                    <h4>Bio</h4> {bio}
+                  </Col>
+                  <Col>
+                    <h4>Email</h4> {email}
+                  </Col>
+                </Row>
               </CardText>
             </CardBody>
           </Card>

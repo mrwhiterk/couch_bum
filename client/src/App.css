@@ -34,3 +34,9 @@ main {
   width: 90%;
   margin: 1% auto;
 }
+
+#app-title {
+  font-family: 'Lobster', cursive;
+  color: #44FFEE;
+  font-size: 2.5rem;
+}

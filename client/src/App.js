@@ -136,7 +136,7 @@ class App extends Component {
       <div>
         <Navbar color='light' light expand='md'>
           <Link to='/'>
-            <NavbarBrand>Couch Bum</NavbarBrand>
+            <NavbarBrand id='app-title'>Couch Bum</NavbarBrand>
           </Link>
 
           <NavbarToggler onClick={this.toggle} />

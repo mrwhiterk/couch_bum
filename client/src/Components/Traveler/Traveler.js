@@ -50,21 +50,23 @@ export default class Traveler extends Component {
                 <h3>{username}</h3>
               </CardTitle>
               <CardText>
-                <div>
-                  <h4>Bio</h4> {bio}
-                </div>
-                <div>
-                  <h4>Email</h4> {email}
-                </div>
-                <div>
-                  <img src={image} alt='profile pic' />
-                </div>
-                <div>
-                  <h4>Skills</h4>
-                  {skills.map((skill, i) => (
-                    <p key={i}>{skill.name}</p>
-                  ))}
-                </div>
+                <Row>
+                  <Col>
+                    <h4>Bio</h4> {bio}
+                  </Col>
+                  <Col>
+                    <h4>Email</h4> {email}
+                  </Col>
+                  <Col>
+                    <img src={image} alt='profile pic' />
+                  </Col>
+                  <Col>
+                    <h4>Skills</h4>
+                    {skills.map((skill, i) => (
+                      <p key={i}>{skill.name}</p>
+                    ))}
+                  </Col>
+                </Row>
               </CardText>
             </CardBody>
           </Card>

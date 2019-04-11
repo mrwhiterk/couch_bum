@@ -90,7 +90,6 @@ export default class HomeListings extends Component {
                           </Row>
                         </div>
                       </CardText>
-                      <Button>Apply</Button>
                     </CardBody>
                   </Card>
                 </ListGroupItem>

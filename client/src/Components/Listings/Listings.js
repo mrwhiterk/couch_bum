@@ -8,6 +8,8 @@ import {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
+  Row,
+  Col,
 } from 'reactstrap';
 
 export default class Listings extends Component {
@@ -47,10 +49,22 @@ export default class Listings extends Component {
           <ListGroup>
             {this.state.listings.map((listing, i) => (
               <ListGroupItem key={i}>
-                <Link to={`/listing/${listing._id}`}>
-                  <ListGroupItemHeading>{listing.address}</ListGroupItemHeading>
-                </Link>
-                <ListGroupItemText>{listing.notes}</ListGroupItemText>
+                <Row>
+                  <Col>
+                    <Link to={`/listing/${listing._id}`}>
+                      <ListGroupItemHeading>
+                        {listing.address}
+                      </ListGroupItemHeading>
+                    </Link>
+                  </Col>
+                  <Col>
+                    <img src={listing.imgUrls[0]} height='100px' />
+                  </Col>
+                  <Col />
+                  <Col>
+                    <ListGroupItemText>{listing.notes}</ListGroupItemText>
+                  </Col>
+                </Row>
               </ListGroupItem>
             ))}
           </ListGroup>
