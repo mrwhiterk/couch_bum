@@ -103,6 +103,33 @@ router.get('/getUserInfo/:id', (req, res) => {
   });
 });
 
+router.get('/getEditFields/:id', (req, res) => {
+  User.findOne({ _id: req.params.id }).then(user => {
+    const { username, bio, image } = user;
+    let userInfo = {
+      username,
+      bio,
+      image,
+    };
+    res.json(userInfo);
+  });
+});
+
+router.put('/updateProfile/:id', (req, res) => {
+  User.findOne({ _id: req.params.id }).then(user => {
+    const { username, bio, image } = req.body;
+
+    user.username = username;
+    user.bio = bio;
+    user.image = image;
+
+    user.save((err, team) => {
+      if (err) console.log(err);
+      res.json(user);
+    });
+  });
+});
+
 // get all hosts
 router.get('/hosts', (req, res) => {
   User.find({ formType: 0 }).then(users => {

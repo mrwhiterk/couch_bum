@@ -66,12 +66,15 @@ export default class UserInfo extends Component {
                   </Col>
                   <Col>
                     <h4>profile pic</h4>
-                    <img src={image} />
+                    <img src={image} height='200px' />
                   </Col>
                 </Row>
               </CardText>
             </CardBody>
           </Card>
+          <Link to='/editProfile'>
+            <Button color='info'>Edit</Button>
+          </Link>
         </div>
       );
     }

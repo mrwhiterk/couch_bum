@@ -58,7 +58,7 @@ export default class Traveler extends Component {
                     <h4>Email</h4> {email}
                   </Col>
                   <Col>
-                    <img src={image} alt='profile pic' />
+                    <img src={image} alt='profile pic' height='200px' />
                   </Col>
                   <Col>
                     <h4>Skills</h4>

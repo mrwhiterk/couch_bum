@@ -10,6 +10,7 @@ import HomeListings from './Components/HomeListings/HomeListings';
 import TravelerList from './Components/TravelerList/TravelerList';
 import Traveler from './Components/Traveler/Traveler';
 import UserInfo from './Components/UserInfo/UserInfo';
+import ProfileForm from './Components/ProfileForm/ProfileForm';
 import axios from 'axios';
 import serverUrl from './Components/constants';
 
@@ -288,6 +289,12 @@ class App extends Component {
               path='/myInfo'
               render={props => (
                 <UserInfo {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              path='/editProfile'
+              render={props => (
+                <ProfileForm {...props} isLoggedIn={this.state.isLoggedIn} />
               )}
             />
           </Switch>
