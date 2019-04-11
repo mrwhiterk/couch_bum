@@ -17,5 +17,5 @@ app.use('/users', userController);
 app.use(require('./routes'));
 
 app.listen(app.get('port'), () => {
-  console.log('✅  port: ' + app.get('port'));
+  console.log(`✅ PORT: ${app.get('port')} 🌟`);
 });
