@@ -6,6 +6,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Listings from './Components/Listings/Listings';
 import Listing from './Components/Listing/Listing';
 import HomeSkillList from './Components/HomeSkillList/HomeSkillList';
+import HomeListings from './Components/HomeListings/HomeListings';
 import TravelerList from './Components/TravelerList/TravelerList';
 import Traveler from './Components/Traveler/Traveler';
 import axios from 'axios';
@@ -171,7 +172,9 @@ class App extends Component {
                     <Link to='/mySkills'>
                       <DropdownItem>Skills</DropdownItem>
                     </Link>
-                    <DropdownItem>Listings</DropdownItem>
+                    <Link to='/myListings'>
+                      <DropdownItem>Listings</DropdownItem>
+                    </Link>
                     {/* <DropdownItem divider />
                     <DropdownItem>Reset</DropdownItem> */}
                   </DropdownMenu>
@@ -207,72 +210,79 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-
-        <Switch>
-          <Route
-            path='/'
-            exact
-            render={props => (
-              <Home {...props} isLoggedIn={this.state.isLoggedIn} />
-            )}
-          />
-          <Route
-            path='/Listings'
-            exact
-            render={props => (
-              <Listings {...props} isLoggedIn={this.state.isLoggedIn} />
-            )}
-          />
-          <Route
-            path='/Travelers'
-            exact
-            render={props => (
-              <TravelerList {...props} isLoggedIn={this.state.isLoggedIn} />
-            )}
-          />
-          <Route
-            path='/Listing/:id'
-            exact
-            render={props => (
-              <Listing {...props} isLoggedIn={this.state.isLoggedIn} />
-            )}
-          />
-          <Route
-            path='/Traveler/:id'
-            exact
-            render={props => (
-              <Traveler {...props} isLoggedIn={this.state.isLoggedIn} />
-            )}
-          />
-          <Route
-            path='/users/signup'
-            render={props => (
-              <SignUpForm
-                {...props}
-                isLoggedIn={this.state.isLoggedIn}
-                handleInput={this.handleInput}
-                handleSignUp={this.handleSignUp}
-              />
-            )}
-          />
-          <Route
-            path='/users/login'
-            render={props => (
-              <LogInForm
-                {...props}
-                isLoggedIn={this.state.isLoggedIn}
-                handleInput={this.handleInput}
-                handleLogIn={this.handleLogIn}
-              />
-            )}
-          />
-          <Route
-            path='/mySkills'
-            render={props => (
-              <HomeSkillList {...props} isLoggedIn={this.state.isLoggedIn} />
-            )}
-          />
-        </Switch>
+        <main>
+          <Switch>
+            <Route
+              path='/'
+              exact
+              render={props => (
+                <Home {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              path='/Listings'
+              exact
+              render={props => (
+                <Listings {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              path='/Travelers'
+              exact
+              render={props => (
+                <TravelerList {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              path='/Listing/:id'
+              exact
+              render={props => (
+                <Listing {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              path='/Traveler/:id'
+              exact
+              render={props => (
+                <Traveler {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              path='/users/signup'
+              render={props => (
+                <SignUpForm
+                  {...props}
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleInput={this.handleInput}
+                  handleSignUp={this.handleSignUp}
+                />
+              )}
+            />
+            <Route
+              path='/users/login'
+              render={props => (
+                <LogInForm
+                  {...props}
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleInput={this.handleInput}
+                  handleLogIn={this.handleLogIn}
+                />
+              )}
+            />
+            <Route
+              path='/mySkills'
+              render={props => (
+                <HomeSkillList {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              path='/myListings'
+              render={props => (
+                <HomeListings {...props} isLoggedIn={this.state.isLoggedIn} />
+              )}
+            />
+          </Switch>
+        </main>
       </div>
     );
   }

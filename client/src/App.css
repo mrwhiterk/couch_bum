@@ -29,3 +29,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+main {
+  width: 90%;
+  margin: 1% auto;
+}
