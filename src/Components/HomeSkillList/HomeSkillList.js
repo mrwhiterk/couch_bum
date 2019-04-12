@@ -45,7 +45,14 @@ export default class HomeSkillList extends Component {
     if (!this.state.skillList) {
       return <div>Loading</div>;
     } else if (this.state.skillList.length === 0) {
-      return <h3>No Skills Listed</h3>;
+      return (
+        <div>
+          <h3>No Skills Listed</h3>
+          <Link to='/addSkillToUser'>
+            <Button color='primary'>Add</Button>
+          </Link>
+        </div>
+      );
     } else {
       return (
         <div>
