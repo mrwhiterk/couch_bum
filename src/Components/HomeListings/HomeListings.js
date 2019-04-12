@@ -97,9 +97,21 @@ export default class HomeListings extends Component {
                           </Row>
                         </div>
                       </CardText>
-                      <Link to={`/removeListingFromUser/${listing._id}`}>
-                        Remove
-                      </Link>
+                      <Row>
+                        <Col>
+                          <Link to={`/listingEditForm/${listing._id}`}>
+                            Edit
+                          </Link>
+                        </Col>
+                        <Col>
+                          <Link to={`/removeListingFromUser/${listing._id}`}>
+                            Remove
+                          </Link>
+                        </Col>
+                        <Col />
+                        <Col />
+                        <Col />
+                      </Row>
                     </CardBody>
                   </Card>
                 </ListGroupItem>

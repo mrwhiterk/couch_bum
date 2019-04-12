@@ -10,6 +10,7 @@ import HomeListings from './Components/HomeListings/HomeListings';
 import TravelerList from './Components/TravelerList/TravelerList';
 import SkillForm from './Components/SkillForm/SkillForm';
 import ListingForm from './Components/ListingForm/ListingForm';
+import ListingEditForm from './Components/ListingEditForm/ListingEditForm';
 import Traveler from './Components/Traveler/Traveler';
 import UserInfo from './Components/UserInfo/UserInfo';
 import ProfileForm from './Components/ProfileForm/ProfileForm';
@@ -314,6 +315,10 @@ class App extends Component {
             <Route
               path='/listingForm/'
               render={props => <ListingForm {...props} />}
+            />
+            <Route
+              path='/listingEditForm/:id'
+              render={props => <ListingEditForm {...props} />}
             />
           </Switch>
         </main>
