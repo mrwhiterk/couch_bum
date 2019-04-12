@@ -52,14 +52,21 @@ export default class HomeListings extends Component {
     if (!this.state.homeListings) {
       return <div>Loading</div>;
     } else if (this.state.homeListings.length === 0) {
-      return <h3>No Listings</h3>;
+      return (
+        <div>
+          <h3>No Listings</h3>
+          <Link to={`/listingForm`}>
+            <Button color='primary'>Add</Button>
+          </Link>
+        </div>
+      );
     } else {
       return (
         <div>
           <h2>My Listings</h2>
           <ListGroup>
             {this.state.homeListings.map((listing, i) => {
-              let { address, availability, notes, imgUrls } = listing;
+              let { id, address, availability, notes, imgUrls } = listing;
               return (
                 <ListGroupItem key={i}>
                   <Card>
@@ -90,13 +97,18 @@ export default class HomeListings extends Component {
                           </Row>
                         </div>
                       </CardText>
+                      <Link to={`/removeListingFromUser/${listing._id}`}>
+                        Remove
+                      </Link>
                     </CardBody>
                   </Card>
                 </ListGroupItem>
               );
             })}
           </ListGroup>
-          <Button color='primary'>Add</Button>
+          <Link to={`/listingForm`}>
+            <Button color='primary'>Add</Button>
+          </Link>
         </div>
       );
     }

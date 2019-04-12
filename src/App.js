@@ -9,6 +9,7 @@ import HomeSkillList from './Components/HomeSkillList/HomeSkillList';
 import HomeListings from './Components/HomeListings/HomeListings';
 import TravelerList from './Components/TravelerList/TravelerList';
 import SkillForm from './Components/SkillForm/SkillForm';
+import ListingForm from './Components/ListingForm/ListingForm';
 import Traveler from './Components/Traveler/Traveler';
 import UserInfo from './Components/UserInfo/UserInfo';
 import ProfileForm from './Components/ProfileForm/ProfileForm';
@@ -306,6 +307,14 @@ class App extends Component {
               path='/addSkillToUser'
               render={props => <SkillForm {...props} />}
             />
+            <Route
+              path='/removeListingFromUser/:id'
+              render={props => <RemoveListingFromUser {...props} />}
+            />
+            <Route
+              path='/listingForm/'
+              render={props => <ListingForm {...props} />}
+            />
           </Switch>
         </main>
       </div>
@@ -324,6 +333,24 @@ const RemoveSkillFromUser = props => {
     )
     .then(res => {
       props.history.push(`/mySkills`);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  return <div />;
+};
+
+const RemoveListingFromUser = props => {
+  axios
+    .put(
+      serverUrl +
+        '/users/removeListingFromUser/' +
+        localStorage.id +
+        '/listing/' +
+        props.match.params.id
+    )
+    .then(res => {
+      props.history.push(`/myListings`);
     })
     .catch(err => {
       console.log(err);
