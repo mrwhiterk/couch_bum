@@ -9,18 +9,25 @@ export default class ListingForm extends Component {
 
     this.state = {
       address: undefined,
-      availability: undefined,
+      availability: false,
       imgUrls: undefined,
       notes: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.onCheckChange = this.onCheckChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value,
+    });
+  }
+
+  onCheckChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.checked,
     });
   }
 
@@ -42,8 +49,6 @@ export default class ListingForm extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     return (
       <div className='container'>
         <h1>Add Listing</h1>
@@ -57,15 +62,13 @@ export default class ListingForm extends Component {
               className='form-control'
               value={this.state.address}
             />
-            <label htmlFor='availability'>
-              Availability (type 'yes' or 'no')
-            </label>
+            <label htmlFor='availability'>Availability</label>
             <input
-              type='text'
+              type='checkbox'
               name='availability'
-              onChange={this.handleChange}
+              onChange={this.onCheckChange}
               className='form-control'
-              value={this.state.availability}
+              checked={this.state.availability}
             />
             <label htmlFor='imgUrls'>Images (separate with space)</label>
             <input
